@@ -1,6 +1,6 @@
 import { drizzle } from 'drizzle-orm/d1'
 
-import * as schema from '../db/schema/uuid'
+import * as schema from '../db/schema/int'
 
 export { sql, eq, and, or } from 'drizzle-orm'
 

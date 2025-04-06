@@ -26,7 +26,9 @@ export default defineTask({
       const postSeedData = []
 
       for (let i = 1; i <= USERS_COUNT; i++) {
-        userSeedData.push({ name: `User ${i}` })
+        userSeedData.push({
+          name: `User ${i}`,
+        })
       }
 
       for (let i = 1; i <= POSTS_COUNT; i++) {

@@ -21,6 +21,7 @@
 		"drizzle-kit": "^0.30.6",
 		"drizzle-orm": "^0.41.0",
 		"drizzle-seed": "^0.3.1",
+		"hashids": "^2.3.0",
 		"nuxt": "^3.16.2",
 		"ulid": "^3.0.0",
 		"vue": "^3.5.13",

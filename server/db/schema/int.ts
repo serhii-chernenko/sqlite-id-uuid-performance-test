@@ -1,15 +1,18 @@
 import { relations } from 'drizzle-orm'
-import { sqliteTable, integer, text } from 'drizzle-orm/sqlite-core'
+import { sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import { publicId } from '../../utils/public-id'
 
 export const users = sqliteTable('users', {
-  id: integer().primaryKey(),
+  id: publicId().primaryKey(),
   name: text('name').notNull(),
 })
 
 export const posts = sqliteTable('posts', {
-  id: integer().primaryKey(),
+  id: publicId().primaryKey(),
   title: text().notNull(),
-  authorId: integer('author_id').references(() => users.id),
+  authorId: publicId('author_id').references(() => {
+    return users.id
+  }),
 })
 
 export const usersRelations = relations(users, ({ many }) => ({

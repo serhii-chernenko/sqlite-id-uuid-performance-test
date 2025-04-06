@@ -19,11 +19,14 @@ export default defineEventHandler(async (event) => {
   const db = useDatabase()
 
   const user = await db.query.users.findFirst({
-    // @ts-expect-error
-    where: (users, { eq }) => eq(users.id, Number(params.data.id)),
     with: {
-      posts: true,
+      posts: {
+        columns: {
+          authorId: false,
+        },
+      },
     },
+    where: eq(tables.users.id, decodeId(params.data.id)),
   })
 
   if (!user) {
