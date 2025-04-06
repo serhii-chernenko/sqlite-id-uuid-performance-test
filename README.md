@@ -97,7 +97,7 @@ Response time is **~878ms**:
 
 ## The best option
 
-Andrew Sherman (creator of Drizzle ORM) suggested to me the best approach. I can create a custom type via Drizzle ORM that returns integer in the same way for the `id` column. So, just go forward with auto-incremented integer primary key. But! It can be encoded only on select (no need for insert) to hide the exact value when returned from API.
+Andrew Sherman (the creator of Drizzle ORM) suggested to me the best approach. I can create a custom type via Drizzle ORM that returns integer in the same way for the `id` column. So, just go forward with auto-incremented integer primary key. But! It can be encoded only on select (no need for insert) to hide the exact value when returned from API.
 
 Screenshot explanation:
 ![image](https://github.com/user-attachments/assets/bc85fdb9-50d4-41c8-a9d5-74d8260e68d7)
@@ -110,6 +110,9 @@ API response:
 ![image](https://github.com/user-attachments/assets/d25dc377-a17f-4d67-be9b-02d598c0a4c7)
 
 So, it's equally fast as just using integer. In addition, I encoded it via the [`hashids`](https://www.npmjs.com/package/hashids) NPM package. It means, it could be decoded only when you know exact value of a decoding secret key. And it solves what I mean, it seems much better in the API response but still be the fastest option as needed due to the performance requirements.
+
+Related commit:
+https://github.com/serhii-chernenko/sqlite-id-uuid-performance-test/commit/ea2d3a8ec2feb69e3ace49efc6acfe32e084aeaf
 
 ## Just some videos
 
