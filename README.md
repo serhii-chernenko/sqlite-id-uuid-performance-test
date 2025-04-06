@@ -95,6 +95,22 @@ Response time is **~878ms**:
 3. `drizzle-seed` needs adjustments for D1 for seeding more than 20 records.
 4. Drizzle Studio is pretty fast, clear and it has nice UX. Not a PhpMyAdmin if you are pretty old as me :D (I'm 29, LOL)
 
+## The best option
+
+Andrew Sherman (creator of Drizzle ORM) suggested to me the best approach. I can create a custom type via Drizzle ORM that returns integer in the same way for the `id` column. So, just go forward with auto-incremented integer primary key. But! It can be encoded only on select (no need for insert) to hide the exact value when returned from API.
+
+Screenshot explanation:
+![image](https://github.com/user-attachments/assets/bc85fdb9-50d4-41c8-a9d5-74d8260e68d7)
+
+Database example:
+![image](https://github.com/user-attachments/assets/27e3ba13-afa3-4e25-a5b6-6ad90c3a5594)
+
+API response:
+![image](https://github.com/user-attachments/assets/09204c9a-6659-43ad-b7a3-ebb58bde7322)
+![image](https://github.com/user-attachments/assets/d25dc377-a17f-4d67-be9b-02d598c0a4c7)
+
+So, it's equally fast as just using integer. In addition, I encoded it via the [`hashids`](https://www.npmjs.com/package/hashids) NPM package. It means, it could be decoded only when you know exact value of a decoding secret key. And it solves what I mean, it seems much better in the API response but still be the fastest option as needed due to the performance requirements.
+
 ## Just some videos
 
 ### Integer
